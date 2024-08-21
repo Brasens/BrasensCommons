@@ -83,45 +83,17 @@ public class Asset {
 	@JsonIgnore
 	private List<Data> dataList = new ArrayList<>();
 
-	@OneToOne(mappedBy = "asset", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
+	@OneToMany(targetEntity = FFT.class, mappedBy = "asset", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	@JsonIgnore
-	private FFT fftAcceleration_X;
-
-	@OneToOne(mappedBy = "asset", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
-	@JsonIgnore
-	private FFT fftAcceleration_Y;
-
-	@OneToOne(mappedBy = "asset", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
-	@JsonIgnore
-	private FFT fftAcceleration_Z;
-
-	@OneToOne(mappedBy = "asset", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
-	@JsonIgnore
-	private FFT fftSpeed_X;
-
-	@OneToOne(mappedBy = "asset", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
-	@JsonIgnore
-	private FFT fftSpeed_Y;
-
-	@OneToOne(mappedBy = "asset", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
-	@JsonIgnore
-	private FFT fftSpeed_Z;
+	private List<FFT> ffts = new ArrayList<>();
 
 	@OneToOne(mappedBy = "asset", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Downtime downtime;
 
-	@OneToOne(mappedBy = "asset", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
+	@OneToMany(targetEntity = VibrationSensorReading.class, mappedBy = "asset", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	@JsonIgnore
-	private VibrationSensorReading sensorReading_X;
-
-	@OneToOne(mappedBy = "asset", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
-	@JsonIgnore
-	private VibrationSensorReading sensorReading_Y;
-
-	@OneToOne(mappedBy = "asset", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
-	@JsonIgnore
-	private VibrationSensorReading sensorReading_Z;
+	private List<VibrationSensorReading> readings = new ArrayList<>();
 
 	@Column(name = "alert_level")
 	@Enumerated(EnumType.STRING)

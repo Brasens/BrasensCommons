@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -52,8 +54,9 @@ public class VibrationSensorReading {
     @JsonIgnore
     private Distribution distribution = new Distribution();
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "asset_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @JoinColumn(name = "asset_id", nullable = false)
     @JsonIgnore
     private Asset asset;
 }

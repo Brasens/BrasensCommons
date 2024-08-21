@@ -60,8 +60,9 @@ public class FFT {
     @JsonIgnore
     private Envelope envelope;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "asset_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @JoinColumn(name = "asset_id", nullable = false)
     @JsonIgnore
     private Asset asset;
 }
