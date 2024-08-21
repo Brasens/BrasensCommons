@@ -30,7 +30,9 @@ public class AlertComments {
     @JsonIgnore
     private UUID id;
 
-    private String user;
+    @Column(name = "username")
+    private String username;
+
     private String message;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'", timezone = "UTC")

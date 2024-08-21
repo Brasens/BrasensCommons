@@ -32,13 +32,10 @@ public class VibrationSensorReading {
     @JsonIgnore
     private UUID id;
 
-    @Column(name = "temporal_array", columnDefinition = "double precision[]")
-    @Type(type = "list-array")
-    private List<Double> temporalValues = new ArrayList<>();
-
-    @Column(name = "data_array", columnDefinition = "double precision[]")
-    @Type(type = "list-array")
-    private List<Double> data = new ArrayList<>();
+    @OneToMany(targetEntity = Vector.class, cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "values_id")
+    @JsonIgnore
+    private List<Vector> values = new ArrayList<>();
 
     @Column(name = "asset_key")
     private String key;
