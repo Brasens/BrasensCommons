@@ -84,11 +84,11 @@ public class CriticalValues {
     private double fetchFFTValue(String axis, String metric) {
         switch (axis) {
             case "X":
-                return fetchFFTMetric(asset.getFftAcceleration_X().getStatisticalValues(), metric);
+                return fetchFFTMetric(asset.getFfts().get(0).getStatisticalValues(), metric);
             case "Y":
-                return fetchFFTMetric(asset.getFftAcceleration_Y().getStatisticalValues(), metric);
+                return fetchFFTMetric(asset.getFfts().get(1).getStatisticalValues(), metric);
             case "Z":
-                return fetchFFTMetric(asset.getFftAcceleration_Z().getStatisticalValues(), metric);
+                return fetchFFTMetric(asset.getFfts().get(2).getStatisticalValues(), metric);
             default:
                 throw new IllegalArgumentException("Eixo desconhecido: " + axis);
         }
@@ -97,11 +97,11 @@ public class CriticalValues {
     private double fetchWaveformValue(String axis, String metric) {
         switch (axis) {
             case "X":
-                return fetchWaveformMetric(asset.getSensorReading_X().getStatisticalValues(), metric);
+                return fetchWaveformMetric(asset.getReadings().get(0).getStatisticalValues(), metric);
             case "Y":
-                return fetchWaveformMetric(asset.getSensorReading_Y().getStatisticalValues(), metric);
+                return fetchWaveformMetric(asset.getReadings().get(1).getStatisticalValues(), metric);
             case "Z":
-                return fetchWaveformMetric(asset.getSensorReading_Z().getStatisticalValues(), metric);
+                return fetchWaveformMetric(asset.getReadings().get(2).getStatisticalValues(), metric);
             default:
                 throw new IllegalArgumentException("Eixo desconhecido: " + axis);
         }
