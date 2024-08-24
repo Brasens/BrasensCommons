@@ -32,13 +32,18 @@ public class DescriptiveStatistics {
     }
 
     public static double Median(List<Double> data) {
-        List<Double> clonedList = new ArrayList<>(data);
-        Collections.sort(clonedList);
-        int size = clonedList.size();
-        if (size % 2 != 0)
-            return clonedList.get(size / 2);
-        else {
-            return (clonedList.get((size / 2) - 1) + clonedList.get(size / 2)) / 2.0;
+        try {
+            List<Double> clonedList = new ArrayList<>(data);
+            Collections.sort(clonedList);
+            int size = clonedList.size();
+            if (size % 2 != 0)
+                return clonedList.get(size / 2);
+            else {
+                return (clonedList.get((size / 2) - 1) + clonedList.get(size / 2)) / 2.0;
+            }
+        }catch (Exception e){
+            System.out.println(e);
+            return 0;
         }
     }
 
