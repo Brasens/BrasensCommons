@@ -48,20 +48,27 @@ public class DescriptiveStatistics {
     }
 
     public static double Mode(List<Double> data) {
-        Map<Double, Integer> frequencyMap = new HashMap<>();
-        for (Double d : data) {
-            frequencyMap.put(d, frequencyMap.getOrDefault(d, 0) + 1);
-        }
+        try {
+            if(!data.isEmpty()) {
+                Map<Double, Integer> frequencyMap = new HashMap<>();
+                for (Double d : data) {
+                    frequencyMap.put(d, frequencyMap.getOrDefault(d, 0) + 1);
+                }
 
-        double mode = data.get(0);
-        int maxCount = 0;
-        for (Map.Entry<Double, Integer> entry : frequencyMap.entrySet()) {
-            if (entry.getValue() > maxCount) {
-                maxCount = entry.getValue();
-                mode = entry.getKey();
+                double mode = data.get(0);
+                int maxCount = 0;
+                for (Map.Entry<Double, Integer> entry : frequencyMap.entrySet()) {
+                    if (entry.getValue() > maxCount) {
+                        maxCount = entry.getValue();
+                        mode = entry.getKey();
+                    }
+                }
+                return mode;
             }
+        } catch (Exception e) {
+            System.out.println(e);
         }
-        return mode;
+        return 0;
     }
 
     public static double RMS(List<Double> data) {
