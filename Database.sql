@@ -71,8 +71,6 @@ CREATE TABLE History (
 -- Vibration_Sensor_Reading Table
 CREATE TABLE Vibration_Sensor_Reading (
     id UUID PRIMARY KEY,
-    data_array DOUBLE PRECISION[] NOT NULL,
-    temporal_array DOUBLE PRECISION[],
     asset_key VARCHAR(255)  NOT NULL,
     added TIMESTAMPTZ DEFAULT (now() AT TIME ZONE 'America/Sao_Paulo') NOT NULL,
     asset_id UUID NOT NULL,
@@ -263,6 +261,9 @@ ALTER TABLE Events ADD CONSTRAINT fk_asset_events FOREIGN KEY (asset_id) REFEREN
 ALTER TABLE Machine_Intervals ADD CONSTRAINT fk_asset_machineintervals FOREIGN KEY (id_asset) REFERENCES Asset(id);
 ALTER TABLE Vibration_Sensor_Reading ADD CONSTRAINT fk_asset_vibration FOREIGN KEY (asset_id) REFERENCES Asset(id);
 ALTER TABLE Location_Tree ADD CONSTRAINT fk_organization FOREIGN KEY (organization_id) REFERENCES Organization(id);
+
+ALTER TABLE FFT ADD CONSTRAINT fk_asset_fft FOREIGN KEY (asset_id) REFERENCES Asset(id);
+ALTER TABLE Vibration_Sensor_Reading ADD CONSTRAINT fk_asset_reading FOREIGN KEY (asset_id) REFERENCES Asset(id);
 
 ALTER TABLE Asset ADD CONSTRAINT fk_location FOREIGN KEY (location_id) REFERENCES Location_Tree(id);
 

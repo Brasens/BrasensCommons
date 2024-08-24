@@ -87,8 +87,9 @@ public class FFT {
     }
 
     public static double[] reindexValues(double[] values, int indexs) {
+        int copyLength = Math.min(values.length, indexs);
         double[] data = new double[indexs];
-        System.arraycopy(values, 0, data, 0, indexs);
+        System.arraycopy(values, 0, data, 0, copyLength);
         return data;
     }
 
@@ -231,6 +232,7 @@ public class FFT {
         return vecs;
     }
 
+    //SENSOR_DATARATE = 25800
     public static List<Vector> jdspFFT(double[] signal, int SENSOR_DATARATE, int SAMPLES) {
         _Fourier ft = new FastFourier(signal);
         ft.transform();
