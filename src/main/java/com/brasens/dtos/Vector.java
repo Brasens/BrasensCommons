@@ -29,7 +29,7 @@ public class Vector {
     @Column(name = "y")
     private double y;
 
-    @Column(name = "values_id", nullable = false)
+    @Column(name = "values_id")
     private UUID valuesId;
 
     public Vector(double x, double y) {
