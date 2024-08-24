@@ -218,16 +218,22 @@ public class FFT {
     }
 
     public static List<Vector> envelope(double[] fft, int SENSOR_DATARATE, int SAMPLES) {
-        Hilbert h = new Hilbert(fft);
-        h.transform();
-        double[][] analytical_signal = h.getOutput();
-        double[] envelope = h.getAmplitudeEnvelope();
-
-        double freqResolution = SAMPLES / SENSOR_DATARATE;
-
         List<Vector> vecs = new ArrayList<>();
-        for(int i =0; i< envelope.length;i++){
-            vecs.add(new Vector2D(freqResolution * i, envelope[i]).toVector());
+        if(fft.length > 0) {
+           try {
+               Hilbert h = new Hilbert(fft);
+               h.transform();
+               double[][] analytical_signal = h.getOutput();
+               double[] envelope = h.getAmplitudeEnvelope();
+
+               double freqResolution = SAMPLES / SENSOR_DATARATE;
+
+               for (int i = 0; i < envelope.length; i++) {
+                   vecs.add(new Vector2D(freqResolution * i, envelope[i]).toVector());
+               }
+           }catch (Exception e){
+               System.out.println(e);
+           }
         }
 
         return vecs;
