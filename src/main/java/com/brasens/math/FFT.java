@@ -8,6 +8,7 @@ import com.github.psambit9791.jdsp.transform._Fourier;
 import org.jtransforms.fft.DoubleFFT_1D;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FFT {
@@ -234,16 +235,31 @@ public class FFT {
 
     //SENSOR_DATARATE = 25800
     public static List<Vector> jdspFFT(double[] signal, int SENSOR_DATARATE, int SAMPLES) {
-        _Fourier ft = new FastFourier(signal);
-        ft.transform();
-        boolean onlyPositive = true;
-
-        double freqResolution = SAMPLES/SENSOR_DATARATE;
-        double[] out = ft.getMagnitude(onlyPositive);
-
+        int newLength = nearestLowerPowerOfTwo(signal.length);
         List<Vector> vecs = new ArrayList<>();
-        for(int i =0; i< out.length;i++){
-            vecs.add(new Vector2D(freqResolution * i, out[i]).toVector());
+        try {
+            if (newLength < signal.length) {
+                signal = Arrays.copyOfRange(signal, 0, newLength);
+            } else if (newLength > signal.length) {
+                double[] paddedSignal = new double[newLength];
+                System.arraycopy(signal, 0, paddedSignal, 0, signal.length);
+                signal = paddedSignal;
+            }
+
+            applyWindow(signal);
+
+            _Fourier ft = new FastFourier(signal);
+            ft.transform();
+            boolean onlyPositive = true;
+
+            double freqResolution = SAMPLES / SENSOR_DATARATE;
+            double[] out = ft.getMagnitude(onlyPositive);
+
+            for (int i = 0; i < out.length; i++) {
+                vecs.add(new Vector2D(freqResolution * i, out[i]).toVector());
+            }
+        }catch (Exception e){
+            System.out.println(e);
         }
 
         return vecs;
