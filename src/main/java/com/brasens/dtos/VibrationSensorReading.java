@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -23,14 +24,10 @@ import static com.brasens.Commons.DEFAULT_TIMEZONE;
 @Table(name = "Vibration_Sensor_Reading")
 @Getter
 @Setter
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 public class VibrationSensorReading extends Reading{
-    @OneToMany(targetEntity = Vector.class, cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "values_id")
-    @JsonIgnore
-    private List<Vector> values = new ArrayList<>();
-
     @Column(name = "asset_key")
     private String key;
 
