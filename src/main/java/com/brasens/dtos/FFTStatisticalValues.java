@@ -32,17 +32,17 @@ public class FFTStatisticalValues{
     @JsonIgnore
     private UUID id;
 
-    @OneToMany(targetEntity = Vector.class, cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = Vector.class, cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "peaks_id")
     @JsonIgnore
     private List<Vector> peaks = new ArrayList<>();
 
-    @OneToMany(targetEntity = Vector.class, cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = Vector.class, cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "harmonics_id")
     @JsonIgnore
     private List<Vector> harmonics = new ArrayList<>();
 
-    @OneToMany(targetEntity = Vector.class, cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = Vector.class, cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "orders_id")
     @JsonIgnore
     private List<Vector> orders = new ArrayList<>();

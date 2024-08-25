@@ -124,6 +124,11 @@ public class Asset {
 	@JoinColumn(name = "bearing_id", nullable = true)
 	private Bearings bearing;
 
+	@OneToMany(targetEntity = History.class, cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@JoinColumn(name = "history_id")
+	@JsonIgnore
+	private List<History> histories = new ArrayList<>();
+
 	@ManyToOne
 	@JoinColumn(name = "organization_id")
 	private Organization organization;

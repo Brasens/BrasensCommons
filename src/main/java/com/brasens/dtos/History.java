@@ -14,6 +14,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Entity
@@ -33,12 +34,51 @@ public class History {
     @Column(name = "asset_key")
     private String key;
 
-    @OneToOne(mappedBy = "asset", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Downtime downtime;
+    private double rms_acc_peak_x;
+    private double rms_acc_peakpeak_x;
+    private double rms_acc_peak_y;
+    private double rms_acc_peakpeak_y;
+    private double rms_acc_peak_z;
+    private double rms_acc_peakpeak_z;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    private double rms_speed_peak_x;
+    private double rms_speed_peakpeak_x;
+    private double rms_speed_peak_y;
+    private double rms_speed_peakpeak_y;
+    private double rms_speed_peak_z;
+    private double rms_speed_peakpeak_z;
+
+    private double temperature_mean;
+    private double temperature_peak;
+
+    private double waveform_rms;
+    private double waveform_peak;
+    private double waveform_peakpeak;
+    private double waveform_skewness;
+    private double waveform_kurtosis;
+    private double waveform_crest;
+    private double waveform_k_factor;
+    private double waveform_standard_deviation;
+    private double waveform_variance;
+
+    private double fft_acc_rms;
+    private double fft_acc_peak;
+    private double fft_acc_peakpeak;
+    private double fft_acc_skewness;
+    private double fft_acc_kurtosis;
+    private double fft_acc_variance;
+
+    private double fft_speed_rms;
+    private double fft_speed_peak;
+    private double fft_speed_peakpeak;
+    private double fft_speed_skewness;
+    private double fft_speed_kurtosis;
+    private double fft_speed_variance;
+    private double fft_speed_standard_deviation;
+
+    private double downtime;
+
+    @ManyToOne
     @JoinColumn(name = "asset_id")
-    @JsonIgnore
     private Asset asset;
 }
