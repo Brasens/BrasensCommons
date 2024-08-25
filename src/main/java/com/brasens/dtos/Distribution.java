@@ -22,14 +22,7 @@ import static com.brasens.Commons.DEFAULT_TIMEZONE;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Distribution {
-    @Id
-    @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
-    @GeneratedValue(generator = "UUIDGenerator")
-    @Column(name = "id")
-    @JsonIgnore
-    private UUID id;
-
+public class Distribution extends Reading {
     @OneToMany(targetEntity = Vector.class, cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "values_id")
     @JsonIgnore

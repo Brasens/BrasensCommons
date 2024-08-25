@@ -23,14 +23,7 @@ import static com.brasens.Commons.DEFAULT_TIMEZONE;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class FFTStatisticalValues {
-    @Id
-    @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
-    @GeneratedValue(generator = "UUIDGenerator")
-    @Column(name = "id")
-    @JsonIgnore
-    private UUID id;
-
+public class FFTStatisticalValues extends Reading{
     @OneToMany(targetEntity = Vector.class, cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "peaks_id")
     @JsonIgnore

@@ -29,8 +29,9 @@ public class Vector {
     @Column(name = "y")
     private double y;
 
-    @Column(name = "values_id")
-    private UUID valuesId;
+    @ManyToOne
+    @JoinColumn(name = "values_id")
+    private Reading reading;
 
     public Vector(double x, double y) {
         this.x = x;
