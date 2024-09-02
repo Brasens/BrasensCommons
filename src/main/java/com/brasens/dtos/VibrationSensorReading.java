@@ -39,9 +39,14 @@ public class VibrationSensorReading extends Reading{
     @JsonIgnore
     private VibrationSensorReadingStatisticalValues statisticalValues = new VibrationSensorReadingStatisticalValues();
 
+    @Column(name = "last_recovery")
+    int lastRecovery = 0;
+
     @OneToOne(mappedBy = "vibrationSensorReading", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonIgnore
     private Distribution distribution = new Distribution();
+    @Column(name = "identifier")
+    private String identifier = "";
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.NO_ACTION)

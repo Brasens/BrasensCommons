@@ -50,6 +50,9 @@ public class FFT extends Reading{
     @JsonIgnore
     private Envelope envelope;
 
+    @Column(name = "identifier")
+    private String identifier = "";
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "asset_id", nullable = false)
