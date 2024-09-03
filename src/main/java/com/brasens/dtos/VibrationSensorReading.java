@@ -40,7 +40,7 @@ public class VibrationSensorReading extends Reading{
     private VibrationSensorReadingStatisticalValues statisticalValues = new VibrationSensorReadingStatisticalValues();
 
     @Column(name = "last_recovery")
-    int lastRecovery = 0;
+    Integer lastRecovery = 0;
 
     @OneToOne(mappedBy = "vibrationSensorReading", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonIgnore
