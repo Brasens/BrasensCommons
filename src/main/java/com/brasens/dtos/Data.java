@@ -53,7 +53,7 @@ public class Data {
     private String key;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'", timezone = "UTC")
-    @Column(name = "added", insertable = false, updatable = false)
+    @Column(name = "added")
     private ZonedDateTime added = ZonedDateTime.now().withZoneSameInstant(DEFAULT_TIMEZONE.toZoneId());
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

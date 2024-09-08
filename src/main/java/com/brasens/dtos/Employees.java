@@ -50,11 +50,11 @@ public class Employees {
     String imageLink;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'", timezone = "UTC")
-    @Column(name = "added", insertable = false, updatable = false)
+    @Column(name = "added")
     private ZonedDateTime added = ZonedDateTime.now().withZoneSameInstant(DEFAULT_TIMEZONE.toZoneId());
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'", timezone = "UTC")
-    @Column(name = "last_activity", insertable = false, updatable = false)
+    @Column(name = "last_activity")
     private ZonedDateTime lastActivity;
 
     @ManyToOne
