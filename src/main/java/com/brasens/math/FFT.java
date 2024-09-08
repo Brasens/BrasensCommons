@@ -258,11 +258,11 @@ public class FFT {
             ft.transform();
             boolean onlyPositive = true;
 
-            double freqResolution = SAMPLES / SENSOR_DATARATE;
+            double freqResolution = (double) SAMPLES / (double)SENSOR_DATARATE;
             double[] out = ft.getMagnitude(onlyPositive);
 
             for (int i = 0; i < out.length; i++) {
-                vecs.add(new Vector2D(freqResolution * i, out[i]).toVector());
+                vecs.add(new Vector2D((double)freqResolution * (double)i, out[i]).toVector());
             }
         }catch (Exception e){
             System.out.println(e);
